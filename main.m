@@ -18,5 +18,8 @@ end
 
 %% task 2 : plot Pd versus SNR
 SNRs = 10 * log10(ens / sigmaw2);
-acc = check_accuracy(mask, pred1);
-plot_acc(acc, SNRs, "actual Pd when known A and s");
+pd = pred_rate(mask, pred1);
+labels = ["Pfa = 1e-1", "Pfa = 1e-2", "Pfa = 1e-3", "Pfa = 1e-4", "Pfa = 1e-5"];
+plot_pd(pd, SNRs, labels, "actual Pd when known A and s");
+
+%% task 3 : unknown A and known s
