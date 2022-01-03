@@ -34,7 +34,9 @@ plot_pd(pd, SNRs, labels, "actual Pd when known A and s");
 pd_theory = zeros(size(pd));                            % probability of prediction (5 * 30)
 for i = 1 : size(pd_theory, 1)
     for j = 1 : size(pd_theory, 2)
-        pd_theory(i, j) = 1 - normcdf(norminv(1 - Pfa(i), 0, 1) - sqrt(ens(j) / sigmaw2), 0, 1);
+        tmp = -norminv(Pfa(i), 0, 1) - sqrt(ens(j) / sigmaw2);
+        tmp2 = normcdf(-norminv(Pfa(i), 0, 1) - sqrt(ens(j) / sigmaw2), 0, 1);
+        pd_theory(i, j) = 1 - normcdf(-norminv(P - sqrt(ens(j) / sigmaw2), 0, 1);
     end
 end
 plot_pd(pd_theory, SNRs, labels, "theoretical Pd when known A and s")
