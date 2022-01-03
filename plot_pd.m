@@ -1,7 +1,7 @@
-function [] = plot_pd(pd, SNRs, labels, name)    
+function [] = plot_pd(pd, SNRs, labels, name, x_label)    
     figure('Name', name);
     plot(SNRs, pd);
-    xlabel("SNR");
+    xlabel(x_label);
     ylabel("Accuracy");
     legend(labels);
     title(name);
