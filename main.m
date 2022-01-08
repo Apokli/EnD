@@ -27,7 +27,7 @@ for i = 1 : size(pd, 1)
         pd(i, j) = sum(pred1(i, mask == 1, j)) / sum(mask);     % predicted positives / real positives
     end
 end
-plot_pd(pd, SNRs, labels, "Actual Pd when known A and s", "SNR");
+plot_pd(pd, SNRs, labels, "Actual Pd when known A and s", "SNR", 'northwest');
 
 % theoretical prediction rate
 
@@ -37,7 +37,7 @@ for i = 1 : size(pd_theory, 1)
         pd_theory(i, j) = 1 - normcdf(norminv(1 - Pfa(i), 0, 1) - sqrt(ens(j) / sigmaw2), 0, 1);    % using energy with A
     end
 end
-plot_pd(pd_theory, SNRs, labels, "Theoretical Pd when known A and s", "SNR")
+plot_pd(pd_theory, SNRs, labels, "Theoretical Pd when known A and s", "SNR", 'northwest')
 
 %% task 3 : unknown A and known s
 % generate new datas with new As.
@@ -70,7 +70,7 @@ for i = 1 : size(pd2_1, 1)
         pd2_1(i, j) = sum(pred2_1(i, mask == 1, j)) / sum(mask);     % predicted positives / real positives
     end
 end
-plot_pd(pd2_1, A2, labels, "Actual Pd using original detector when A is unknown", "A");    % plotted against A (not SNR)
+plot_pd(pd2_1, A2, labels, "Actual Pd using original detector when A is unknown", "A", 'northwest');    % plotted against A (not SNR)
 
 pd_theory2_1 = zeros(size(pd));                            % probability of prediction (5 * 30)
 for i = 1 : size(pd_theory2_1, 1)
@@ -82,7 +82,7 @@ for i = 1 : size(pd_theory2_1, 1)
         end
     end
 end
-plot_pd(pd_theory2_1, A2, labels, "Theoretical Pd using original detector when A is unknown", "A")
+plot_pd(pd_theory2_1, A2, labels, "Theoretical Pd using original detector when A is unknown", "A", 'northwest')
 
 % then try the absolute value detector
 pred2_2 = zeros(size(pred1));
@@ -103,7 +103,7 @@ for i = 1 : size(pd2_2, 1)
         pd2_2(i, j) = sum(pred2_2(i, mask == 1, j)) / sum(mask);
     end
 end
-plot_pd(pd2_2, A2, labels, "Actual Pd using the absolute value detector when A is unknown", "A");    % plotted against A (not SNR)
+plot_pd(pd2_2, A2, labels, "Actual Pd using the absolute value detector when A is unknown", "A", 'north');    % plotted against A (not SNR)
 
 pd_theory2_2 = zeros(size(pd));                            % probability of prediction (5 * 30)
 for i = 1 : size(pd_theory2_2, 1)
@@ -112,5 +112,5 @@ for i = 1 : size(pd_theory2_2, 1)
                              (1 - normcdf(norminv(1 - Pfa(i) / 2, 0, 1) + sqrt(ens2(j) / sigmaw2), 0, 1));
     end
 end
-plot_pd(pd_theory2_2, A2, labels, "Theoretical Pd using absolute value detector when A is unknown", "A")
+plot_pd(pd_theory2_2, A2, labels, "Theoretical Pd using absolute value detector when A is unknown", "A", 'north')
 
